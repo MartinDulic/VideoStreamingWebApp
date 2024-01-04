@@ -69,5 +69,8 @@ namespace BLL.Services
             await _repositoryFactory.TagRepository.DeleteAsync(id);
             await _repositoryFactory.SaveAsync();
         }
+
+        public async Task SaveData() => await _repositoryFactory.SaveAsync();
+
     }
 }

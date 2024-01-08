@@ -13,6 +13,6 @@ namespace BL.Model
         public string ReceiverEmail { get; set; } = null!;
         public string Subject { get; set; } = null!;
         public string Body { get; set; } = null!;
-        public DateTime SentAt { get; set; }
+        public DateTime? SentAt { get; set; }
     }
 }

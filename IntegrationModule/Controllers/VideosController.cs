@@ -11,7 +11,7 @@ namespace IntegrationModule.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VideoController : ControllerBase
+    public class VideosController : ControllerBase
     {
         private readonly VideoService _videoService;
         private readonly TagService _tagService;
@@ -19,7 +19,7 @@ namespace IntegrationModule.Controllers
         private readonly GenreService _genreService;
         private readonly ImageService _imageService;
         
-        public VideoController(VideoService videoService, TagService tagService, VideoTagService videoTagService, ImageService imageService, GenreService genreService)
+        public VideosController(VideoService videoService, TagService tagService, VideoTagService videoTagService, ImageService imageService, GenreService genreService)
         {
             _videoService = videoService;
             _tagService = tagService;

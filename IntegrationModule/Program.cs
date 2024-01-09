@@ -27,6 +27,7 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TagService>();
 builder.Services.AddScoped<VideoService>();
 builder.Services.AddScoped<VideoTagService>();
+builder.Services.AddScoped<UserService>();
 
 var currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 var environmentName = builder.Environment.EnvironmentName;
@@ -45,8 +46,8 @@ builder.Services.AddDbContext<RwaProjectDatabaseContext>(options =>
 });
 
 var app = builder.Build();
+app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

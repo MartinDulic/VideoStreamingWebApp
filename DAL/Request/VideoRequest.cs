@@ -9,20 +9,17 @@ namespace DAL.Requests
 {
     public class VideoRequest
     {
-        /*
-         Svojstva videosadržaja su name, description, image, total time, streaming url, genre i tags.
-         */
         [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required(ErrorMessage = "Description is required")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "ImageId must be a positive number(integer)")]
         public int ImageId { get; set; }
         [Range(1, 2145600, ErrorMessage = "Length must be between 1 and 2145600 seconds")]
         public int TotalTime { get; set; }
         [Url(ErrorMessage = "Invalid URL format")]
-        public string StreamingUrl { get; set; }
+        public string? StreamingUrl { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "GenreId must be a positive number(integer)")]
         public int GenreId { get; set; }

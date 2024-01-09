@@ -61,5 +61,6 @@ namespace BLL.Services
             await _repositoryFactory.NotificationRepository.DeleteAsync(id);
             await _repositoryFactory.SaveAsync();
         }
+        public async void SaveDataAsync() => await _repositoryFactory.SaveAsync();
     }
 }

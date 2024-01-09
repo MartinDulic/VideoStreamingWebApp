@@ -9,9 +9,6 @@ namespace DAL.Requests
 {
     public class GenreRequest
     {
-        /*
-         * Svojstva žanra su name i description
-         */
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Description is required")]

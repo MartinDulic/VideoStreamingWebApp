@@ -9,8 +9,7 @@ namespace DAL.Requests
 {
     public class TagRequest
     {
-        //Svojstvo oznake je name
         [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

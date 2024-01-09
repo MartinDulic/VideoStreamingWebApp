@@ -9,9 +9,7 @@ namespace DAL.Requests
 {
     public class ADVVideoRequest
     {
-        /*
-         Svojstva videosadržaja su name, description, image, total time, streaming url, genre i tags.
-         */
+
         [Required(ErrorMessage = "Name is required")]
         public string? Name { get; set; }
         [Required(ErrorMessage = "Description is required")]

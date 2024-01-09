@@ -9,6 +9,6 @@ namespace DAL.Requests
     public class EmailValidationRequest
     {
         public string? Username { get; set; }
-        public string? B64SecToken { get; set; }
+        public string? Base64SecurityToken { get; set; }
     }
 }

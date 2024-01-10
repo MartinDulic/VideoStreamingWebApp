@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationModule", "Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeSmtp", "FakeSmtp\FakeSmtp.csproj", "{7B74A667-857A-438A-B8B9-8FEFE447C868}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdministrationModule", "AdministrationModule\AdministrationModule.csproj", "{D259E70A-7F46-477A-88D1-65BC2FD5E71F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7B74A667-857A-438A-B8B9-8FEFE447C868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B74A667-857A-438A-B8B9-8FEFE447C868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B74A667-857A-438A-B8B9-8FEFE447C868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D259E70A-7F46-477A-88D1-65BC2FD5E71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D259E70A-7F46-477A-88D1-65BC2FD5E71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D259E70A-7F46-477A-88D1-65BC2FD5E71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D259E70A-7F46-477A-88D1-65BC2FD5E71F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

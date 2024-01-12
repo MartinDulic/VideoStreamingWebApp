@@ -1,7 +1,7 @@
-﻿using AdminModule.Models;
+﻿using AdministrationModule.Models;
 using AutoMapper;
 
-namespace AdminModule.Mapping
+namespace AdministrationModule.Mapping
 {
     public class AutoMapperProfile : Profile
     {

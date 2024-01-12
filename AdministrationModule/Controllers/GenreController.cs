@@ -1,7 +1,8 @@
-﻿using BL.Model;
+﻿using AdministrationModule.Models;
+using AutoMapper;
+using BL.Model;
 using BLL.Services;
 using DAL.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdministrationModule.Controllers
@@ -9,22 +10,24 @@ namespace AdministrationModule.Controllers
     public class GenreController : Controller
     {
         private readonly  GenreService _genreService;
+        private readonly IMapper _mapper;
 
-        public GenreController(GenreService genreService)
+        public GenreController(GenreService genreService, IMapper mapper)
         {
             _genreService = genreService;
+            _mapper = mapper;
         }
 
         // GET: GenreController
         public async Task<ActionResult> Index()
         {
-            return View(await _genreService.GetAll());
+            return View(_mapper.Map<IEnumerable<VMGenre>>(await _genreService.GetAll()));
         }
 
         // GET: GenreController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            return View(_mapper.Map<VMGenre>(await _genreService.GetById(id)));
         }
 
         // GET: GenreController/Create
@@ -36,10 +39,23 @@ namespace AdministrationModule.Controllers
         // POST: GenreController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(VMGenre genre)
         {
             try
             {
+                if (await _genreService.GetByName(genre.Name) != null || !ModelState.IsValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Data is invalid or that genre allready exists!");
+                    return View(genre);
+                }
+
+                await _genreService.Add(
+                    new BLGenre
+                    {
+                        Name = genre.Name,
+                        Description = genre.Description
+                    }
+                );
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -49,18 +65,29 @@ namespace AdministrationModule.Controllers
         }
 
         // GET: GenreController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            return View(_mapper.Map<VMGenre>(await _genreService.GetById(id)));
         }
 
         // POST: GenreController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, VMGenre freshGenre)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Data invalid!");
+                    return View(freshGenre);
+                }
+
+                BLGenre genre = await _genreService.GetById(id);
+                genre.Name = freshGenre.Name;
+                genre.Description = freshGenre.Description;
+                await _genreService.Update(genre);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -70,18 +97,19 @@ namespace AdministrationModule.Controllers
         }
 
         // GET: GenreController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            return View(_mapper.Map<VMGenre>(await _genreService.GetById(id)));
         }
 
         // POST: GenreController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
             try
             {
+                await _genreService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

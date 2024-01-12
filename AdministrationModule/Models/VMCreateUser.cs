@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AdminModule.Models
+namespace AdministrationModuleistration.Models
 {
     public class VMCreateUser
     {

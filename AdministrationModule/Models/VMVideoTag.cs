@@ -1,5 +1,5 @@
 ﻿
-namespace AdminModule.Models
+namespace AdministrationModule.Models
 {
     public class VMVideoTag
     {

@@ -13,6 +13,7 @@ builder.Services.AddAutoMapper(typeof(BL.Maper.AutoMapperProfile));
 builder.Services.AddScoped<RwaProjectDatabaseContext>();
 builder.Services.AddScoped<RepositoryFactory>();
 builder.Services.AddScoped<GenreService>();
+builder.Services.AddScoped<TagService>();
 
 var app = builder.Build();
 

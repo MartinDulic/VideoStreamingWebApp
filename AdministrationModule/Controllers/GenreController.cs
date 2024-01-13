@@ -71,8 +71,7 @@ namespace AdministrationModule.Controllers
 
         // POST: GenreController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, VMGenre freshGenre)
+        public async Task<ActionResult> Edit(int id,[FromBody] VMGenre freshGenre)
         {
             try
             {
@@ -82,16 +81,17 @@ namespace AdministrationModule.Controllers
                     return View(freshGenre);
                 }
 
+
                 BLGenre genre = await _genreService.GetById(id);
                 genre.Name = freshGenre.Name;
                 genre.Description = freshGenre.Description;
                 await _genreService.Update(genre);
 
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true });
             }
             catch
             {
-                return View();
+                return Json(new { success = false });
             }
         }
 
@@ -103,17 +103,16 @@ namespace AdministrationModule.Controllers
 
         // POST: GenreController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, [FromBody] VMGenre dummy)
         {
             try
             {
                 await _genreService.Delete(id);
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true });
             }
             catch
             {
-                return View();
+                return Json(new { success = false });
             }
         }
     }

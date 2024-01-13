@@ -31,4 +31,16 @@
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
+    <form>
+        <div class="text-danger"></div>
+        <div class="form-group">
+            <label class="control-label">ID</label>
+            <input id="genreId" class="form-control" />
+            <span class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input id="ajax-delete" type="submit" value="Delete With AJAX" class="btn btn-danger" />
+        </div>
+    </form>
 </div>
+<script src="~/js/GenreDelete.js"></script>

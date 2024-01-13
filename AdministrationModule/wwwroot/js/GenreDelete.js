@@ -1,26 +1,26 @@
 ﻿$(document).ready(function () {
-    document.getElementById('ajax-create').addEventListener("click", async (evt) => {
+    document.getElementById('ajax-delete').addEventListener("click", async (evt) => {
+        var genreIdField = $('#genreId');
+        alert("event inbound");
 
-        var genreNameField = $('#genreName');
-        var genreDescriptionField = $('#genreDescription');
-
-        if (!genreNameField.val() || !genreDescriptionField.val()) {
-            alert("Both genre name and description are required!");
+        if (!genreIdField.val()) {
+            alert("Genre ID required!");
             evt.preventDefault();
             return false;
         }
 
         $.ajax({
             type: "POST",
-            url: "/Genre/Create",
+            url: "/Genre/Delete/" + genreIdField.val(),
             contentType: 'application/json',
             data: JSON.stringify({
-                Name: genreNameField.val(),
-                Description: genreDescriptionField.val()
+                Name: "a",
+                Description: "a"
             }),
             success: function (data) {
                 alert("Ajax POST success");
                 console.log(data);
+                alert(data);
                 location.reload();
             },
             error: function (error) {
@@ -30,11 +30,4 @@
             }
         });
     });
-
-
-
-
-
-
-
 });

@@ -38,8 +38,7 @@ namespace AdministrationModule.Controllers
 
         // POST: GenreController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(VMGenre genre)
+        public async Task<ActionResult> Create([FromBody] VMGenre genre)
         {
             try
             {
@@ -56,11 +55,11 @@ namespace AdministrationModule.Controllers
                         Description = genre.Description
                     }
                 );
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true });
             }
             catch
             {
-                return View();
+                return Json(new { success = false });
             }
         }
 

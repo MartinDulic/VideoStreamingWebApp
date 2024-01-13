@@ -27,6 +27,23 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+
+        <form>
+            <div class="text-danger"></div>
+            <div class="form-group">
+                <label for="Name" class="control-label">Name</label>
+                <input id="genreName" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Description" class="control-label">Description</label>
+                <input id="genreDescription" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input id="ajax-create" type="submit" value="Create with AJAX" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 </div>
 
@@ -34,6 +51,11 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+<script src="~/js/Genre.js"></script>

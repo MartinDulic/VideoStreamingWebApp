@@ -14,6 +14,7 @@ builder.Services.AddScoped<RwaProjectDatabaseContext>();
 builder.Services.AddScoped<RepositoryFactory>();
 builder.Services.AddScoped<GenreService>();
 builder.Services.AddScoped<TagService>();
+builder.Services.AddScoped<CountryService>();
 
 var app = builder.Build();
 

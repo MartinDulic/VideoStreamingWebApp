@@ -120,7 +120,16 @@ namespace DAL.Repository
 
         public async Task SaveAsync()
         {
-            await context?.SaveChangesAsync();
+            try
+            {
+                await context?.SaveChangesAsync();
+
+            }
+            catch (DbUpdateException dbe)
+            {
+                await Console.Out.WriteLineAsync(dbe.InnerException.Message);
+                throw;
+            }        
         }
 
         protected virtual void Dispose(bool disposing)

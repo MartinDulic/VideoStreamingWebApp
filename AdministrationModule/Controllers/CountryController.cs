@@ -2,6 +2,7 @@
 using AutoMapper;
 using BL.Model;
 using BLL.Services;
+using AdministrationModule.Pager;
 using DAL.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,17 @@ namespace AdministrationModule.Controllers
 
 
         // GET: CountryController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1)
         {
-            return View(_mapper.Map<IEnumerable<VMCountry>>(await _countryService.GetAll()));
+            const int pageSize = 2;
+            var pager = new MyPager((await _countryService.GetAll()).Count(), page, pageSize);
+
+            int itemsToSkip = (page - 1) * pageSize;
+
+            var data = _mapper.Map<IEnumerable<VMCountry>>(await _countryService.GetAll()).Skip(itemsToSkip)
+                .Take(pageSize);
+            ViewBag.Pager = pager;
+            return View(data);
         }
 
         // GET: CountryController/Details/5

@@ -16,3 +16,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.page-links-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.page-link-div {
+    display: inline-block;
+}
+
+.page-link {
+    width: 5%;
+    height: 5%;
+}

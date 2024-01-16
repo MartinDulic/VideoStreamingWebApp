@@ -32,14 +32,14 @@ namespace BLL.Services
         }
 
 
-        public async Task<IEnumerable<BLUser>> GetAllUsers()
+        public async Task<IEnumerable<BLUser>> GetAll()
         {
             var dalUsers = await _repositoryFactory.UserRepository.GetAsync(includeProperties: "CountryOfResidence");
             var blUsers = _mapper.Map<IEnumerable<BLUser>>(dalUsers);
             return blUsers;
         }
 
-        public async Task<BLUser> GetUserById(int id)
+        public async Task<BLUser> GetById(int id)
         {
             var dalUsers = await _repositoryFactory.UserRepository.GetAsync(includeProperties: "CountryOfResidence");
             var dalUser = dalUsers.FirstOrDefault(u => u.Id == id);
@@ -48,7 +48,7 @@ namespace BLL.Services
         }
 
 
-        public async Task<BLUser> AddUser(UserRequest request)
+        public async Task<BLUser> Add(UserRequest request)
         {
             var dalUsers = await _repositoryFactory.UserRepository.GetAsync();
             var blUsers = _mapper.Map<IEnumerable<BLUser>>(dalUsers);
@@ -165,7 +165,7 @@ namespace BLL.Services
             };
         }
 
-        public async Task UpdateUser(BLUser freshUser)
+        public async Task Update(BLUser freshUser)
         {
             var dalUsers = await _repositoryFactory.UserRepository.GetAsync(includeProperties: "CountryOfResidence");
             var existingUser = dalUsers.FirstOrDefault(u => u.Id == freshUser.Id);
@@ -189,7 +189,7 @@ namespace BLL.Services
             await _repositoryFactory.SaveAsync();
         }
 
-        public async Task DeleteUser(int id)
+        public async Task Delete(int id)
         {
             await _repositoryFactory.UserRepository.DeleteAsync(id);
             await _repositoryFactory.SaveAsync();

@@ -27,10 +27,9 @@ namespace AdministrationModule.Controllers
             const int pageSize = 2;
             var pager = new MyPager((await _countryService.GetAll()).Count(), page, pageSize);
 
-            int itemsToSkip = (page - 1) * pageSize;
+            var data = _mapper.Map<IEnumerable<VMCountry>>(await _countryService.GetAll())
+                .Skip((page - 1) * pageSize).Take(pageSize);
 
-            var data = _mapper.Map<IEnumerable<VMCountry>>(await _countryService.GetAll()).Skip(itemsToSkip)
-                .Take(pageSize);
             ViewBag.Pager = pager;
             return View(data);
         }

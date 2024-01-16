@@ -40,7 +40,7 @@ namespace IntegrationModule.Controllers
 
             try
             {
-                var newUser = await _userService.AddUser(request);
+                var newUser = await _userService.Add(request);
 
                 var dalNotification = new BLNotification
                 {

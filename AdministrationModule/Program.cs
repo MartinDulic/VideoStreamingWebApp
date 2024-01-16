@@ -15,6 +15,11 @@ builder.Services.AddScoped<RepositoryFactory>();
 builder.Services.AddScoped<GenreService>();
 builder.Services.AddScoped<TagService>();
 builder.Services.AddScoped<CountryService>();
+builder.Services.AddScoped<VideoService>();
+builder.Services.AddScoped<ImageService>();
+builder.Services.AddScoped<VideoTagService>();
+builder.Services.AddScoped<UserService>();
+
 
 var app = builder.Build();
 

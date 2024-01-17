@@ -1,0 +1,78 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.card {
+  text-decoration: none;
+  color: black;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.card-body {
+  display: flex;
+}
+
+.video-img {
+  flex: 1;
+  max-width: 15%;
+  max-height: 15%;
+}
+
+.video-description {
+align-self: end;
+margin-left: auto;
+}
+
+.page-links-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.page-link-div {
+  display: inline-block;
+}
+
+.page-link {
+  width: 5%;
+  height: 5%;
+}
+
+/*Video details*/
+
+
+.video-image{
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+.video-text {
+  font-size: 1rem;
+}
+
+.btn-play {
+  text-align: center;
+}

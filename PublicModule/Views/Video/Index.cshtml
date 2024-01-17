@@ -1,0 +1,67 @@
+﻿@model IEnumerable<VMVideo>
+
+@{
+    ViewData["Title"] = "Videos";
+    var pager = ViewBag.Pager;
+}
+
+<h1>Videos</h1>
+
+<div>
+    <div>
+        <strong>Sort by:</strong>
+        <select id="sortOrder" onchange="location = this.value;">
+            <option value="">Select...</option>
+            <option value="@Url.Action("Index", new { sortBy = "name"})">Name</option>
+            <option value="@Url.Action("Index", new { sortBy = "genre"})">Genre</option>
+
+            <option value="@Url.Action("Index", new { sortBy = "name desc"})">Name desc</option>
+            <option value="@Url.Action("Index", new { sortBy = "genre desc"})">Genre desc</option>
+        </select>
+    </div>
+</div>
+
+<div>
+
+    <form asp-controller="Video" asp-action="Index">
+        <div>
+            <label for="searchQuery">Search:</label>
+            <input type="text" id="searchQuery" name="searchQuery" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+
+@foreach (var video in Model)
+{
+    <a asp-controller="Video" asp-action="Details" asp-route-id="@video.Id" class="card">
+
+        <div class="card-title">@video.Name</div>
+        <div class="card-body">
+
+            <img src="@video.Image.Content" class="video-img" alt="...">
+            
+            <div class="video-description">@video.Description</div>
+
+        </div>
+
+    </a>
+}
+
+
+
+<div class="page-links-container">
+
+    <h4>Page: </h4>
+
+    <div>
+        @for (int pg = pager.StartPage; pg <= pager.EndPage; pg++)
+        {
+            <div class="page-link-div @(pg == pager.CurrentPage ? "active" : "")">
+                <a class="page-link" asp-controller="Video" asp-action="Index" asp-route-page="@pg">@pg</a>
+            </div>
+        }
+    </div>
+
+</div>

@@ -102,3 +102,20 @@
     </div>
 
 </div>
+
+
+
+<div class="page-links-container">
+
+    <h4>Page: </h4>
+
+    <div>
+        @for (int pg = pager.StartPage; pg <= pager.EndPage; pg++)
+        {
+            <div class="page-link-div @(pg == pager.CurrentPage ? "active" : "")">
+                <a class="page-link" asp-controller="Video" asp-action="Index" asp-route-page="@pg">@pg</a>
+            </div>
+        }
+    </div>
+
+</div>

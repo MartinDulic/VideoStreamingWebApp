@@ -53,6 +53,7 @@ namespace AdministrationModule.Controllers
             {
                 Request.Cookies.TryGetValue("VideoFilter", out string value);
                 if (value != null) sortBy = value;
+                else sortBy = "";
             } 
             else
             {

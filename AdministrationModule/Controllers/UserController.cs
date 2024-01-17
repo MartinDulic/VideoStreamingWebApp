@@ -26,16 +26,17 @@ namespace AdministrationModule.Controllers
 
         private async Task LoadViewBagData()
         {
-            var vmCountry = _mapper.Map<IEnumerable<VMCountry>>(await _countryService.GetAll());
-            ViewBag.CountryOfResidenceId = new SelectList(vmCountry, "Id", "Name");
+            var country = _mapper.Map<IEnumerable<VMCountry>>(await _countryService.GetAll());
+            ViewBag.CountryOfResidenceId = new SelectList(country, "Id", "Name");
         }
         // GET: UserController
         public async Task<ActionResult> Index(string sortBy = null)
         {
             if (string.IsNullOrEmpty(sortBy))
             {
-                Request.Cookies.TryGetValue("VideoFilter", out string value);
+                Request.Cookies.TryGetValue("UserFilter", out string value);
                 if (value != null) sortBy = value;
+                else sortBy = "";
             }
             else
             {
@@ -45,7 +46,7 @@ namespace AdministrationModule.Controllers
                     HttpOnly = true,
                     Secure = true
                 };
-                Response.Cookies.Append("VideoFilter", sortBy, cookieOptions);
+                Response.Cookies.Append("UserFilter", sortBy, cookieOptions);
             }
 
             var users = _mapper.Map<IEnumerable<VMUser>>(await _userService.GetAll());
@@ -168,7 +169,7 @@ namespace AdministrationModule.Controllers
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, string placeholder)
         {
             try
             {

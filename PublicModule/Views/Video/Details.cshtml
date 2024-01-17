@@ -1,0 +1,25 @@
+﻿@using System.Text;
+@using PublicModule.Models;
+@model VMVideo
+
+@{
+    ViewData["Title"] = "Details";
+    StringBuilder sb = new StringBuilder();
+    string tags;
+    foreach (var tag in Model.VideoTags)
+    {
+        sb.Append("[" + tag.Tag.Name + "]");
+    }
+    tags = sb.ToString();
+}
+
+<div>
+    <img src="@Model.Image.Content" class="video-image" alt="..." />
+    <a href="@Model.StreamingUrl" class="btn btn-primary btn-play">Play</a>
+    <div class="video-text">Title: @Model.Name</div>
+    <div class="video-text">Genre: @Model.Genre.Name</div>
+    <div class="video-text">Duration: @Model.TotalSeconds <text> seconds</text></div>
+    <div class="video-text">Tags: @tags</div>
+    <div class="video-text">Created At: @Model.CreatedAt.ToString()</div>
+    <div class="video-text">Description: @Model.Description</div>
+</div>
